@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp1
+﻿namespace UserLogin
 {
-    class UserRoles
-    {
-    }
+    enum UserRoles {ANONYMOUS, ADMIN, INSPECTOR, PROFESSOR, STUDENT }
 }

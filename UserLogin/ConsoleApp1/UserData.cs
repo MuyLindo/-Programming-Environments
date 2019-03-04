@@ -6,11 +6,28 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class UserData
+    static class UserData
     {
-       static private void ResetTestUserData()
-        {
+        private static User _testUser;
 
+        static private void ResetTestUserData()
+        {
+            _testUser.Username = "Somebody";
+            _testUser.Password = "12346";
+            _testUser.FacultyNumb = "121216306";
+            _testUser.Role = 1;
         }
+
+        public static User TestUser
+        {
+            get
+            {
+                ResetTestUserData();
+                return _testUser;
+            }
+
+            set { }
+        }
+
     }
 }

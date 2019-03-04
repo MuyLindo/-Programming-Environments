@@ -16,27 +16,34 @@ namespace ConsoleApp1
             user.FacultyNumb = "121216306";
             user.Role = 1;
 
-            Console.WriteLine(user.Username);
-            Console.WriteLine(user.Password);
-            Console.WriteLine(user.FacultyNumb);
-
-            switch (user.Role)
+            LoginValidation login = new LoginValidation();
+            if (login.ValidateUserInput() == true)
             {
+                Console.WriteLine(UserData.TestUser.Username);
+                Console.WriteLine(UserData.TestUser.Password);
+                Console.WriteLine(UserData.TestUser.FacultyNumb);
 
-                case 1:
-                    Console.WriteLine("Administrator"); break;
-                case 2:
-                    Console.WriteLine("Student"); break;
+                switch (UserData.TestUser.Role)
+                {
 
-                case 3:
-                    Console.WriteLine("Student"); break;
+                    case 1:
+                        Console.WriteLine("Administrator"); break;
+                    case 2:
+                        Console.WriteLine("Student"); break;
 
-                case 4:
-                    Console.WriteLine("Student"); break;
+                    case 3:
+                        Console.WriteLine("Student"); break;
 
-                default: Console.WriteLine("Incorrect number!"); break;
+                    case 4:
+                        Console.WriteLine("Student"); break;
 
+                    default: Console.WriteLine("Incorrect number!"); break;
+
+                }
             }
+
+
+           
 
             Console.ReadKey();
         }

@@ -8,7 +8,7 @@ namespace ConsoleApp1
 {
     static class UserData
     {
-        private static User _testUser;
+        private static User _testUser= new User();
 
         static private void ResetTestUserData()
         {

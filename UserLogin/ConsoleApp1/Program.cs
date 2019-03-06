@@ -22,7 +22,9 @@ namespace ConsoleApp1
                 Console.WriteLine(UserData.TestUser.Username);
                 Console.WriteLine(UserData.TestUser.Password);
                 Console.WriteLine(UserData.TestUser.FacultyNumb);
+                Console.WriteLine(LoginValidation.currentUserRole);
 
+                /*
                 switch (UserData.TestUser.Role)
                 {
 
@@ -40,6 +42,8 @@ namespace ConsoleApp1
                     default: Console.WriteLine("Incorrect number!"); break;
 
                 }
+                */
+
             }
 
 

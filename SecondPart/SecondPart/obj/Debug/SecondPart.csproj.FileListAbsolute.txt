@@ -1,0 +1,7 @@
+C:\Users\Iva\Documents\C#\SecondPart\SecondPart\bin\Debug\SecondPart.exe.config
+C:\Users\Iva\Documents\C#\SecondPart\SecondPart\bin\Debug\SecondPart.exe
+C:\Users\Iva\Documents\C#\SecondPart\SecondPart\bin\Debug\SecondPart.pdb
+C:\Users\Iva\Documents\C#\SecondPart\SecondPart\obj\Debug\SecondPart.csprojAssemblyReference.cache
+C:\Users\Iva\Documents\C#\SecondPart\SecondPart\obj\Debug\SecondPart.csproj.CoreCompileInputs.cache
+C:\Users\Iva\Documents\C#\SecondPart\SecondPart\obj\Debug\SecondPart.exe
+C:\Users\Iva\Documents\C#\SecondPart\SecondPart\obj\Debug\SecondPart.pdb

@@ -28,5 +28,10 @@ namespace SecondPart
             _testUser.FacultyNumber = "121216001";
             _testUser.Role = 1;
         }
+
+        public static User IsUserPassCorrect(String Username, String Password)
+        {
+
+        }
     }
 }

@@ -1,4 +1,4 @@
 ﻿namespace UserLogin
 {
-    enum UserRoles { ANONYNOUS, ADMIN, INSPECTOR, ROFESSOR, STUDENT };
+   public enum UserRoles { ANONYNOUS, ADMIN, INSPECTOR, ROFESSOR, STUDENT };
 }

@@ -12,6 +12,15 @@ namespace SecondPart
         {
             User user = new User();
 
+            Console.WriteLine("Enter username: ");
+            user.Username = Console.ReadLine();
+
+            Console.WriteLine("Enter password: ");
+            user.Password = Console.ReadLine();
+
+            LoginValidation login = new LoginValidation(user.Username, user.Password);
+           
+            /*
             user.Username = "Gosho";
             user.Password = "123456";
             user.FacultyNumber = "121216001";
@@ -33,6 +42,7 @@ namespace SecondPart
                     Console.WriteLine("Role: Student"); break;
                 default: Console.WriteLine("Incorrect number!"); break;
             }
+            */
             Console.ReadKey();
         }
     }

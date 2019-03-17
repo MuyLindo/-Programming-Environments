@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ignore everything
 *
 
@@ -7,3 +8,14 @@
 
 # ...even if they are in subdirectories
 !*/
+=======
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!*.cs
+
+# ...even if they are in subdirectories
+!*/
+>>>>>>> 4174aa0e153fee6cd2bac512f8ae1f66890c07b1

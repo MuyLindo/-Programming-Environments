@@ -19,7 +19,14 @@ namespace SecondPart
 
         public static String GetCurrentSessionActivities(String filter)
         {
-
+            List<String> filteredActivities = (from activity in currentSessionActivities where activity.Contains(filter) select activity).ToList();
+            StringBuilder loggerBuilder = new StringBuilder();
+            foreach (var currentLog in currentSessionActivities)
+            {
+                loggerBuilder.Append(currentLog);
+                loggerBuilder.Append(Environment.NewLine);
+            }
+            return loggerBuilder.ToString();
         }
 
 

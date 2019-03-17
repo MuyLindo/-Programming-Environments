@@ -77,15 +77,16 @@ namespace SecondPart
 
         public static User IsUserPassCorrect(String User, String Pass)
         {
-           /* for (int i = 0; i < _testUser.Length; i++)
-            {
-                if (_testUser[i].Username == User && _testUser[i].Password == Pass)
-                {
-                    return _testUser[i];
-                }
-            }*/
+            /* for (int i = 0; i < _testUser.Length; i++)
+             {
+                 if (_testUser[i].Username == User && _testUser[i].Password == Pass)
+                 {
+                     return _testUser[i];
+                 }
+             }*/
 
-            foreach(User i in testUsers)
+            /*
+            foreach (User i in testUsers)
             {
                 if(i.Username == User && i.Password == Pass)
                 {
@@ -94,6 +95,13 @@ namespace SecondPart
             }
         
             return null;
+            */
+
+            User user = (from findUser in testUsers
+                         where findUser.Username == User && findUser.Password == Pass
+                         select findUser).First();
+            return user;
+
         }
 
         static public Dictionary<string, int> AllUsersUsernames()

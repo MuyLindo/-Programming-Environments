@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,7 +72,15 @@ namespace SecondPart
                                     Console.WriteLine(allusers.ElementAt(i).Value);
                                 }
                                 break;
-
+                            case "4":
+                                loadActivityLogs();
+                                break;
+                            case "5":
+                                Console.WriteLine("Enter filter for log");
+                                String filter = Console.ReadLine();
+                                String currentLogData = Logger.GetCurrentSessionActivities(filter);
+                                Console.WriteLine(currentLogData);
+                                break;
                         }
 
                         break;
@@ -111,6 +120,21 @@ namespace SecondPart
             //UserRoles currentRole = (UserRoles)URole;
             Dictionary<String, int> allUsers = UserData.AllUsersUsernames();
             UserData.AssignUserRole(allUsers[UName], URole);
+        }
+
+        public static void loadActivityLogs()
+        {
+            StreamReader reader = new StreamReader("test.txt");
+            String currentLine = reader.ReadLine();
+            StringBuilder logBuilder = new StringBuilder();
+            while (currentLine != null)
+            {
+                logBuilder.Append(currentLine);
+                logBuilder.Append(Environment.NewLine);
+                currentLine = reader.ReadLine();
+            }
+            Console.WriteLine(logBuilder.ToString());
+            reader.Close();
         }
     }
 

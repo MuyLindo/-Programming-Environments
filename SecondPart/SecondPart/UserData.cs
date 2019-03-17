@@ -11,23 +11,21 @@ namespace SecondPart
        // public static User TestUser = new User();
         private static User[] _testUser = new User[5];
 
-        public static User TestUser
+        public static User[] TestUser
         {
             get
             {
                 ResetTestUserData();
-                for(int i = 0; i < _testUser.Length; i++)
-                {
-                    return _testUser[i];
-                }
-                
+                 return _testUser;               
             }
             set { }
         }
 
         private static void ResetTestUserData()
         {
-            User _testUser[0] = UserData("Name", "pass");
+             _testUser[0] = new User("Gosho", "passwd", "123", 1);
+             _testUser[1] = new User("Pesho", "passwd", "123", 2);
+             _testUser[2] = new User("Tosho", "passwd", "123", 3);
             
             /*
             _testUser.Username = "Gosho";
@@ -37,10 +35,19 @@ namespace SecondPart
             */
         }
 
-        public static User IsUserPassCorrect(String Username, String Password)
+        public static User IsUserPassCorrect(String User, String Pass)
         {
+            for (int i = 0; i < _testUser.Length; i++)
+            {
+                if (_testUser[i].Username == User && _testUser[i].Password == Pass)
+                {
 
-            return ;
+                    return _testUser[i];
+                }
+                    
+                
+            }
+            return null;
         }
     }
 }

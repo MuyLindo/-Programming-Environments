@@ -21,10 +21,10 @@ namespace SecondPart
 
         public bool ValidateUserInput(User user)
         {
-            user.Username = UserData.TestUser.Username;
+            /*user.Username = UserData.TestUser.Username;
             user.Password = UserData.TestUser.Password;
             user.FacultyNumber = UserData.TestUser.FacultyNumber;
-            user.Role = UserData.TestUser.Role;
+            user.Role = UserData.TestUser.Role;*/
 
             UserRoles currentUserRole = (UserRoles)user.Role;
 
@@ -33,12 +33,14 @@ namespace SecondPart
             if(emptyUsername == true)
             {
                 ErrorMessage = "No username entered";
+                currentUserRole = 0;
                 return false;
             }
 
             if(Username.Length < 5)
             {
                 ErrorMessage = "The username must be longer";
+                currentUserRole = 0;
                 return false;
             }
 
@@ -46,15 +48,31 @@ namespace SecondPart
             if(emptyPassword == true)
             {
                 ErrorMessage = "No password entered";
+                currentUserRole = 0;
                 return false;
             }
 
             if(Password.Length < 5)
             {
                 ErrorMessage = "The password must be longer";
+                currentUserRole = 0;
                 return false;
             }
-            return true;
+
+            User test = UserData.IsUserPassCorrect(Username, Password);
+
+            if(test == null)
+            {
+                ErrorMessage = "There is no such User";
+                currentUserRole = 0;
+                return false;
+            }
+            else
+            {
+                currentUserRole = (UserRoles)test.Role;
+                return true;
+            }
+           
         }
     }
 }

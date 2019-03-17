@@ -12,5 +12,17 @@ namespace SecondPart
         public String Password;
         public String FacultyNumber;
         public Int32 Role;
+
+        public User()
+        {
+        }
+
+        public User(String Username, String Password, String FacultyNumber, Int32 Role)
+        {
+            this.Username = Username;
+            this.Password = Password;
+            this.FacultyNumber = FacultyNumber;
+            this.Role = Role;
+        }
     }
 }

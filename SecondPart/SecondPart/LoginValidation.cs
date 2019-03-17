@@ -9,17 +9,17 @@ namespace SecondPart
 {
     class LoginValidation
     {
-        private String Username;
-        private String Password;
+        private String username;
+        private String password;
         private String ErrorMessage;
         private ActionOnError error;
 
         public delegate void ActionOnError(String ErrorMessage);
 
-        public LoginValidation(String Username, String Password, ActionOnError error)
+        public LoginValidation(String username, String password, ActionOnError error)
         {
-            this.Username = Username;
-            this.Password = Password;
+            this.username = username;
+            this.password = password;
             this.error = error;
         }
 
@@ -27,7 +27,9 @@ namespace SecondPart
         {
             UserRoles currentUserRole = (UserRoles)user.Role;
 
-            Boolean emptyUsername = Username.Equals(String.Empty);
+            Logger.LogActivity("Успешен Login"); //във ValidateUserInput 
+
+            bool emptyUsername = username.Equals(string.Empty);
 
             if(emptyUsername == true)
             {
@@ -37,7 +39,7 @@ namespace SecondPart
                 return false;
             }
 
-            if(Username.Length < 5)
+            if(username.Length < 5)
             {
                 ErrorMessage = "The username must be longer";
                 error(ErrorMessage);
@@ -45,7 +47,7 @@ namespace SecondPart
                 return false;
             }
 
-            bool emptyPassword = Password.Equals(String.Empty);
+            bool emptyPassword = password.Equals(string.Empty);
             if(emptyPassword == true)
             {
                 ErrorMessage = "No password entered";
@@ -54,7 +56,7 @@ namespace SecondPart
                 return false;
             }
 
-            if(Password.Length < 5)
+            if(password.Length < 5)
             {
                 ErrorMessage = "The password must be longer";
                 error(ErrorMessage);
@@ -62,7 +64,7 @@ namespace SecondPart
                 return false;
             }
 
-            User test = UserData.IsUserPassCorrect(Username, Password);
+            User test = UserData.IsUserPassCorrect(username, password);
 
             if(test == null)
             {

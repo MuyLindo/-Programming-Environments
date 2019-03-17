@@ -20,14 +20,6 @@ namespace SecondPart
         {
             User user = new User();
 
-            Console.WriteLine("Изберете опция: ");
-            Console.WriteLine("0: Изход");
-            Console.WriteLine("1: Промяна на роля на потребител");
-            Console.WriteLine("2: Промяна на активност на потребител");
-            Console.WriteLine("3: Списък на потребителите");
-            Console.WriteLine("4: Преглед на лог активност");
-            Console.WriteLine("5: Преглед на текуща активност");
-
             /*
             Console.WriteLine("Enter username: ");
             user.Username = Console.ReadLine();
@@ -47,19 +39,79 @@ namespace SecondPart
                 switch (currentUserRole)
                 {
                     case UserRoles.ANONYNOUS:
-                        Console.WriteLine("Role: Anonymous"); break;
+                        Console.WriteLine("Welcome, Anonymous"); break;
                     case UserRoles.ADMIN:
-                        Console.WriteLine("Role: Admin"); break;
+                        Console.WriteLine("Welcome, Admin");
+
+                        String AdminMode;
+
+                        Console.WriteLine("Изберете опция: ");
+                        Console.WriteLine("0: Изход");
+                        Console.WriteLine("1: Промяна на роля на потребител");
+                        Console.WriteLine("2: Промяна на активност на потребител");
+                        Console.WriteLine("3: Списък на потребителите");
+                        Console.WriteLine("4: Преглед на лог активност");
+                        Console.WriteLine("5: Преглед на текуща активност");
+
+                        AdminMode = Console.ReadLine();
+
+                        switch (AdminMode)
+                        {
+                            case "1":
+                                ChangeUserRole();
+                                break;
+                            case "2":
+                                ChangeUserActivity();
+                                break;
+                            case "3":
+                                Dictionary<string, int> allusers = UserData.AllUsersUsernames();
+                                for(int i = 0; i < allusers.Count; i++)
+                                {
+                                    Console.WriteLine(allusers.ElementAt(i).Key);
+                                    Console.WriteLine(allusers.ElementAt(i).Value);
+                                }
+                                break;
+
+                        }
+
+                        break;
                     case UserRoles.INSPECTOR:
-                        Console.WriteLine("Role: Ispector"); break;
+                        Console.WriteLine("Welcome, Ispector"); break;
                     case UserRoles.PROFESSOR:
-                        Console.WriteLine("Role: Professor"); break;
+                        Console.WriteLine("Welcome, Professor"); break;
                     case UserRoles.STUDENT:
-                        Console.WriteLine("Role: Student"); break;
+                        Console.WriteLine("Welcome, Student"); break;
                 }
             }
-            
+
             Console.ReadKey();
         }
+
+        public static void ChangeUserActivity()
+        {
+            Console.WriteLine("Enter Username: ");
+            String UName = Console.ReadLine();
+            Console.WriteLine("Enter a Date: ");
+            int Date = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter a Month: ");
+            int Month = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter a Year: ");
+            int Year = int.Parse(Console.ReadLine());
+            DateTime InputDate = new DateTime(Year, Month, Date);
+            Dictionary<string, int> allUsers = UserData.AllUsersUsernames();
+            UserData.SetUserActiveTo(allUsers[UName], InputDate);
+        }
+
+        public static void ChangeUserRole()
+        {
+            Console.WriteLine("Enter Username: ");
+            String UName = Console.ReadLine();
+            Console.WriteLine("Enter new User Role: ");
+            int URole = int.Parse(Console.ReadLine());
+            //UserRoles currentRole = (UserRoles)URole;
+            Dictionary<String, int> allUsers = UserData.AllUsersUsernames();
+            UserData.AssignUserRole(allUsers[UName], URole);
+        }
     }
+
 }

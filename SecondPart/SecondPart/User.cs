@@ -12,6 +12,8 @@ namespace SecondPart
         public String Password;
         public String FacultyNumber;
         public Int32 Role;
+        public DateTime Created;
+        public DateTime ExpiryDate;
 
         public User()
         {

@@ -5,3 +5,4 @@ C:\Users\Iva\Documents\C#\SecondPart\SecondPart\obj\Debug\SecondPart.csprojAssem
 C:\Users\Iva\Documents\C#\SecondPart\SecondPart\obj\Debug\SecondPart.csproj.CoreCompileInputs.cache
 C:\Users\Iva\Documents\C#\SecondPart\SecondPart\obj\Debug\SecondPart.exe
 C:\Users\Iva\Documents\C#\SecondPart\SecondPart\obj\Debug\SecondPart.pdb
+C:\Users\Iva\Documents\C#\SecondPart\SecondPart\bin\Debug\test.txt

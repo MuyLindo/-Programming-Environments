@@ -12,20 +12,19 @@ namespace SecondPart
         private String Username;
         private String Password;
         private String ErrorMessage;
+        private ActionOnError error;
 
-        public LoginValidation(String Username, String Password)
+        public delegate void ActionOnError(String ErrorMessage);
+
+        public LoginValidation(String Username, String Password, ActionOnError error)
         {
             this.Username = Username;
             this.Password = Password;
+            this.error = error;
         }
 
         public bool ValidateUserInput(User user)
         {
-            /*user.Username = UserData.TestUser.Username;
-            user.Password = UserData.TestUser.Password;
-            user.FacultyNumber = UserData.TestUser.FacultyNumber;
-            user.Role = UserData.TestUser.Role;*/
-
             UserRoles currentUserRole = (UserRoles)user.Role;
 
             bool emptyUsername = Username.Equals(String.Empty);
@@ -33,6 +32,7 @@ namespace SecondPart
             if(emptyUsername == true)
             {
                 ErrorMessage = "No username entered";
+                error(ErrorMessage);
                 currentUserRole = 0;
                 return false;
             }
@@ -40,6 +40,7 @@ namespace SecondPart
             if(Username.Length < 5)
             {
                 ErrorMessage = "The username must be longer";
+                error(ErrorMessage);
                 currentUserRole = 0;
                 return false;
             }
@@ -48,6 +49,7 @@ namespace SecondPart
             if(emptyPassword == true)
             {
                 ErrorMessage = "No password entered";
+                error(ErrorMessage);
                 currentUserRole = 0;
                 return false;
             }
@@ -55,6 +57,7 @@ namespace SecondPart
             if(Password.Length < 5)
             {
                 ErrorMessage = "The password must be longer";
+                error(ErrorMessage);
                 currentUserRole = 0;
                 return false;
             }
@@ -64,6 +67,7 @@ namespace SecondPart
             if(test == null)
             {
                 ErrorMessage = "There is no such User";
+                error(ErrorMessage);
                 currentUserRole = 0;
                 return false;
             }

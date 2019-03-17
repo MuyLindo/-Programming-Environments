@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserLogin;
 
 namespace SecondPart
 {
     class Program
     {
+       public static void Error(String ErrorMessage)
+        {
+            Console.WriteLine("!!!" + ErrorMessage + "!!!");
+        }
+
+        public static UserRoles currentUserRole { get; private set; }
+
         static void Main(string[] args)
         {
             User user = new User();
@@ -18,31 +26,29 @@ namespace SecondPart
             Console.WriteLine("Enter password: ");
             user.Password = Console.ReadLine();
 
-            LoginValidation login = new LoginValidation(user.Username, user.Password);
-           
-            /*
-            user.Username = "Gosho";
-            user.Password = "123456";
-            user.FacultyNumber = "121216001";
-            user.Role = 1;
+            LoginValidation login = new LoginValidation(user.Username, user.Password, Error);
 
-            Console.WriteLine("Username: " + UserData.TestUser.Username);
-            Console.WriteLine("Password: " + UserData.TestUser.Password);
-            Console.WriteLine("FacultyNumber: " + UserData.TestUser.FacultyNumber);
-
-            switch (UserData.TestUser.Role)
+            if (login.ValidateUserInput(user) == true)
             {
-                case 1:
-                    Console.WriteLine("Role: Administrator"); break;
-                case 2:
-                    Console.WriteLine("Role: Inspector"); break;
-                case 3:
-                    Console.WriteLine("Role: Teacher"); break;
-                case 4:
-                    Console.WriteLine("Role: Student"); break;
-                default: Console.WriteLine("Incorrect number!"); break;
+                Console.WriteLine("Username: " + user.Username);
+                Console.WriteLine("Password: " + user.Password);
+                Console.WriteLine("FacultyNumber: " + user.FacultyNumber);
+
+                switch (currentUserRole)
+                {
+                    case UserRoles.ANONYNOUS:
+                        Console.WriteLine("Role: Anonymous"); break;
+                    case UserRoles.ADMIN:
+                        Console.WriteLine("Role: Admin"); break;
+                    case UserRoles.INSPECTOR:
+                        Console.WriteLine("Role: Ispector"); break;
+                    case UserRoles.PROFESSOR:
+                        Console.WriteLine("Role: Professor"); break;
+                    case UserRoles.STUDENT:
+                        Console.WriteLine("Role: Student"); break;
+                }
             }
-            */
+            
             Console.ReadKey();
         }
     }

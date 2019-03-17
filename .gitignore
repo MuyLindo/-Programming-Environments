@@ -1,15 +1,9 @@
 # Ignore everything
-
 *
 
-
-# But not these files
-
+# But not these files...
 !.gitignore
-
 !*.cs
 
-
-
-# Even if they are in subdirectories
+# ...even if they are in subdirectories
 !*/

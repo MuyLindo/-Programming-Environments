@@ -9,7 +9,9 @@ namespace SecondPart
 {
    static class Logger
     {
-        static private List<string> currentSessionActivities = new List<string>();        static public void LogActivity(string activity)
+        static private List<string> currentSessionActivities = new List<string>();
+
+        static public void LogActivity(string activity)
         {
             string activityLine = DateTime.Now + ";" /*+ LoginValidation.currentUserUsername + ";"+ LoginValidation.currentUserRole*/ + ";"+ activity;
             currentSessionActivities.Add(activityLine);

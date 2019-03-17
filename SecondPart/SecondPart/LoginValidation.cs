@@ -27,7 +27,7 @@ namespace SecondPart
         {
             UserRoles currentUserRole = (UserRoles)user.Role;
 
-            bool emptyUsername = Username.Equals(String.Empty);
+            Boolean emptyUsername = Username.Equals(String.Empty);
 
             if(emptyUsername == true)
             {

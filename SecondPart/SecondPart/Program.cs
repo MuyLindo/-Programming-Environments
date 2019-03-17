@@ -20,11 +20,21 @@ namespace SecondPart
         {
             User user = new User();
 
+            Console.WriteLine("Изберете опция: ");
+            Console.WriteLine("0: Изход");
+            Console.WriteLine("1: Промяна на роля на потребител");
+            Console.WriteLine("2: Промяна на активност на потребител");
+            Console.WriteLine("3: Списък на потребителите");
+            Console.WriteLine("4: Преглед на лог активност");
+            Console.WriteLine("5: Преглед на текуща активност");
+
+            /*
             Console.WriteLine("Enter username: ");
             user.Username = Console.ReadLine();
 
             Console.WriteLine("Enter password: ");
             user.Password = Console.ReadLine();
+            */
 
             LoginValidation login = new LoginValidation(user.Username, user.Password, Error);
 

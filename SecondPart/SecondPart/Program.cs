@@ -21,13 +21,13 @@ namespace SecondPart
         {
             User user = new User();
 
-            /*
+            
             Console.WriteLine("Enter username: ");
             user.Username = Console.ReadLine();
 
             Console.WriteLine("Enter password: ");
             user.Password = Console.ReadLine();
-            */
+            
 
             LoginValidation login = new LoginValidation(user.Username, user.Password, Error);
 

@@ -29,7 +29,7 @@ namespace SecondPart
 
             Logger.LogActivity("Успешен Login"); //във ValidateUserInput 
 
-            bool emptyUsername = username.Equals(string.Empty);
+            bool emptyUsername = username.Equals(String.Empty);
 
             if(emptyUsername == true)
             {

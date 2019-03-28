@@ -84,6 +84,7 @@ namespace SecondPart
                         }
 
                         break;
+
                     case UserRoles.INSPECTOR:
                         Console.WriteLine("Welcome, Ispector"); break;
                     case UserRoles.PROFESSOR:

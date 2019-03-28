@@ -10,6 +10,16 @@ namespace StudentRepository
     {
         static void Main(string[] args)
         {
+            String fNum;
+            Console.WriteLine("Enter faculty number: ");
+            fNum = Console.ReadLine();
+            Console.WriteLine();
+
+           // List<Student> test = StudentData.testStudents;
+           
+                StudentData.print(StudentData.isThereStudent(fNum));
+
+            Console.ReadKey();
         }
     }
 }

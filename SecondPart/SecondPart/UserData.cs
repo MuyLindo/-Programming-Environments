@@ -31,9 +31,9 @@ namespace SecondPart
              */
 
             testUsers = new List<User>();
-            testUsers.Add(new User("Gosho", "passwd", "123", 1));
-            testUsers.Add(new User("Pesho", "passwd", "123", 2));
-            testUsers.Add(new User("Tosho", "passwd", "123", 3));
+            testUsers.Add(new User("Gosho", "passwd", "123456", 1));
+            testUsers.Add(new User("Pesho", "passwd", "123459", 4));
+            testUsers.Add(new User("Tosho", "passwd", "123461", 3));
 
             for (int i = 0; i < testUsers.Count; i++)
             {
@@ -46,7 +46,7 @@ namespace SecondPart
         public static void SetUserActiveTo(int index, DateTime newDate)
         {
             testUsers[index].ExpiryDate = newDate;
-            Logger.LogActivity("Промяна на активност на " + testUsers[index].Username); //в SetUserActiveTo
+            Logger.LogActivity("Промяна на активност на " + testUsers[index].Username); 
 
             /*
             foreach (User i in testUsers)
@@ -97,7 +97,7 @@ namespace SecondPart
             return null;
             */
 
-            User user = (from findUser in testUsers
+            User user = (from findUser in TestUser
                          where findUser.Username == User && findUser.Password == Pass
                          select findUser).First();
             return user;

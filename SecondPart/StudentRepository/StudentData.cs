@@ -44,5 +44,20 @@ namespace StudentRepository
                              ).First();
             return result;
         }
+
+        public static void print(Student student)
+        {
+            Console.WriteLine(student.Name);
+            Console.WriteLine(student.SecondName);
+            Console.WriteLine(student.ThirdName);
+            Console.WriteLine(student.Faculty);
+            Console.WriteLine(student.Speciality);
+            Console.WriteLine(student.Degree);
+            Console.WriteLine(student.Status);
+            Console.WriteLine(student.FacultyNumber);
+            Console.WriteLine(student.Course);
+            Console.WriteLine(student.Stream);
+            Console.WriteLine(student.Group);
+        }
     }
 }

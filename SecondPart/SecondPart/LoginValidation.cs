@@ -7,8 +7,11 @@ using UserLogin;
 
 namespace SecondPart
 {
-    class LoginValidation
+   public class LoginValidation
     {
+        public static UserRoles CurrentUserRole
+        { get { return currentUserRole; } private set { currentUserRole = value; } }
+        private static UserRoles currentUserRole;
         private String username;
         private String password;
         private String ErrorMessage;

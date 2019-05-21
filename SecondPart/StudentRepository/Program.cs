@@ -15,9 +15,7 @@ namespace StudentRepository
             fNum = Console.ReadLine();
             Console.WriteLine();
 
-           // List<Student> test = StudentData.testStudents;
-           
-                StudentData.print(StudentData.isThereStudent(fNum));
+            StudentData.Print(StudentData.IsThereStudent(fNum));
 
             Console.ReadKey();
         }

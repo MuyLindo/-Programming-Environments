@@ -48,9 +48,16 @@
     <Compile Include="Status.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentData.cs" />
+    <Compile Include="StudentValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SecondPart\SecondPart.csproj">
+      <Project>{feb20e44-908d-4614-a2ec-02ff396c681e}</Project>
+      <Name>SecondPart</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

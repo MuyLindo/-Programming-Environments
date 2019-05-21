@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecondPart
 {
-    class User
+    public class User
     {
         public String Username;
         public String Password;

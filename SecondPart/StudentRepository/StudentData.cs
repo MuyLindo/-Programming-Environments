@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentRepository
 {
-    class StudentData
+    public class StudentData
     {
         public static List<Student> testStudents;
 
@@ -36,7 +36,7 @@ namespace StudentRepository
                 "26594", 3, 2, 10, DateTime.Now, DateTime.Now));
         }
 
-        public static Student isThereStudent(String fNumber)
+        public static Student IsThereStudent(String fNumber)
         {
             Student result = (from currentStudent in TestStudents
                               where currentStudent.FacultyNumber == fNumber
@@ -45,13 +45,13 @@ namespace StudentRepository
             return result;
         }
 
-        public static void print(Student student)
+        public static void Print(Student student)
         {
             Console.WriteLine(student.Name);
             Console.WriteLine(student.SecondName);
             Console.WriteLine(student.ThirdName);
             Console.WriteLine(student.Faculty);
-            Console.WriteLine(student.Speciality);
+            Console.WriteLine(student.Specialty);
             Console.WriteLine(student.Degree);
             Console.WriteLine(student.Status);
             Console.WriteLine(student.FacultyNumber);

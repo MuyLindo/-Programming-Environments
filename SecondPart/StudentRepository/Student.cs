@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace StudentRepository
 {
-    class Student
+   public class Student
     {
         public String Name { get; set; }
         public String SecondName { get; set; }
         public String ThirdName { get; set; }
         public String Faculty { get; set; }
-        public String Speciality { get; set; }
+        public String Specialty { get; set; }
         public String Degree { get; set; }
         public Status Status { get; set; }
         public String FacultyNumber { get; set; }
@@ -22,14 +22,14 @@ namespace StudentRepository
         public DateTime LastAuthentDate { get; set; }
         public DateTime LastPaymentDate { get; set; }
 
-        public Student(String Name, String SecondName, String ThirdName, String Faculty, String Speciality,
+        public Student(String Name, String SecondName, String ThirdName, String Faculty, String Specialty,
             String Degree, Status Status, String FacultyNumber, Int32 Course, Int32 Stream, Int32 Group)
         {
             this.Name = Name;
             this.SecondName = SecondName;
             this.ThirdName = ThirdName;
             this.Faculty = Faculty;
-            this.Speciality = Speciality;
+            this.Specialty = Specialty;
             this.Degree = Degree;
             this.Status = Status;
             this.FacultyNumber = FacultyNumber;
@@ -38,7 +38,7 @@ namespace StudentRepository
             this.Group = Group;
         }
 
-        public Student(String Name, String SecondName, String ThirdName, String Faculty, String Speciality,
+        public Student(String Name, String SecondName, String ThirdName, String Faculty, String Specialty,
            String Degree, Status Status, String FacultyNumber, Int32 Course, Int32 Stream, Int32 Group, 
            DateTime LastAuthentDate, DateTime LastPaymentDate)
         {
@@ -46,7 +46,7 @@ namespace StudentRepository
             this.SecondName = SecondName;
             this.ThirdName = ThirdName;
             this.Faculty = Faculty;
-            this.Speciality = Speciality;
+            this.Specialty = Specialty;
             this.Degree = Degree;
             this.Status = Status;
             this.FacultyNumber = FacultyNumber;

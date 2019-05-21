@@ -15,7 +15,7 @@ namespace SecondPart
             Console.WriteLine("!!!" + ErrorMessage + "!!!");
         }
 
-        public static UserRoles currentUserRole { get; private set; }
+        public static UserRoles CurrentUserRole { get; private set; }
 
         static void Main(string[] args)
         {
@@ -37,61 +37,61 @@ namespace SecondPart
                 Console.WriteLine("Password: " + user.Password);
                 Console.WriteLine("FacultyNumber: " + user.FacultyNumber);
 
-                switch (currentUserRole)
+                switch ((int)CurrentUserRole)
                 {
-                    case UserRoles.ANONYNOUS:
+                    case 0:
                         Console.WriteLine("Welcome, Anonymous"); break;
-                    case UserRoles.ADMIN:
+                    case 1:
                         Console.WriteLine("Welcome, Admin");
-
-                        String AdminMode;
-
-                        Console.WriteLine("Изберете опция: ");
-                        Console.WriteLine("0: Изход");
-                        Console.WriteLine("1: Промяна на роля на потребител");
-                        Console.WriteLine("2: Промяна на активност на потребител");
-                        Console.WriteLine("3: Списък на потребителите");
-                        Console.WriteLine("4: Преглед на лог активност");
-                        Console.WriteLine("5: Преглед на текуща активност");
-
-                        AdminMode = Console.ReadLine();
-
-                        switch (AdminMode)
+                        String adminOption = "-1";
+                        while (adminOption != "0")
                         {
-                            case "1":
-                                ChangeUserRole();
-                                break;
-                            case "2":
-                                ChangeUserActivity();
-                                break;
-                            case "3":
-                                Dictionary<string, int> allusers = UserData.AllUsersUsernames();
-                                for(int i = 0; i < allusers.Count; i++)
-                                {
-                                    Console.WriteLine(allusers.ElementAt(i).Key);
-                                    Console.WriteLine(allusers.ElementAt(i).Value);
-                                }
-                                break;
-                            case "4":
-                                loadActivityLogs();
-                                break;
-                            case "5":
-                                Console.WriteLine("Enter filter for log");
-                                String filter = Console.ReadLine();
-                                String currentLogData = Logger.GetCurrentSessionActivities(filter);
-                                Console.WriteLine(currentLogData);
-                                break;
+                            Console.WriteLine("Choose an option:");
+                            Console.WriteLine("0: Exit");
+                            Console.WriteLine("1: Change User Role");
+                            Console.WriteLine("2: Change User Activity");
+                            Console.WriteLine("3: User List");
+                            Console.WriteLine("4: Display Activity Log");
+                            Console.WriteLine("5: Display Current Activity Logs");
+                            adminOption = Console.ReadLine();
+
+                            switch (adminOption)
+                            {
+                                case "1": ChangeUserRole(); break;
+                                case "2": ChangeUserActivity(); break;
+                                case "3":
+                                    Dictionary<String, int> allusers = UserData.AllUsersUsernames();
+                                    foreach (var currentUser in allusers)
+                                    {
+                                        Console.WriteLine(currentUser.Key);
+                                        Console.WriteLine(UserData.TestUser[currentUser.Value]);
+                                    }
+                                    break;
+                                case "4":
+                                    LoadActivityLogs(); break;
+
+                                case "5":
+                                    Console.WriteLine("Enter log filter:");
+                                    String filter = Console.ReadLine();
+                                    String currentLogData = Logger.GetCurrentSessionActivities(filter);
+                                    Console.WriteLine(currentLogData); break;
+
+                            }
+
                         }
 
                         break;
-
-                    case UserRoles.INSPECTOR:
-                        Console.WriteLine("Welcome, Ispector"); break;
-                    case UserRoles.PROFESSOR:
-                        Console.WriteLine("Welcome, Professor"); break;
-                    case UserRoles.STUDENT:
-                        Console.WriteLine("Welcome, Student"); break;
+                    case 2: Console.WriteLine("Welcome, INSPECTOR!"); break;
+                    case 3: Console.WriteLine("Welcome, PROFESSOR!"); break;
+                    case 4: Console.WriteLine("Welcome, STUDENT!"); break;
+                    
                 }
+            }
+
+            else
+            {
+                Console.WriteLine("Validation Failed!");
+                Console.WriteLine(LoginValidation.CurrentUserRole);
             }
 
             Console.ReadKey();
@@ -123,7 +123,7 @@ namespace SecondPart
             UserData.AssignUserRole(allUsers[UName], URole);
         }
 
-        public static void loadActivityLogs()
+        public static void LoadActivityLogs()
         {
             StreamReader reader = new StreamReader("test.txt");
             String currentLine = reader.ReadLine();

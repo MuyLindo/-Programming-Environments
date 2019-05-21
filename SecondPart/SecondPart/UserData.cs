@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SecondPart
 {
-    static class UserData
+    static public class UserData
     {
         // private static User[] _testUser = new User[5];
 
@@ -114,6 +114,7 @@ namespace SecondPart
             }
 
             return result;
-        }
+        }
+
     }
 }

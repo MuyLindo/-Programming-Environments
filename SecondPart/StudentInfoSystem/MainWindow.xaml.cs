@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,6 +78,17 @@ namespace StudentInfoSystem
                     ((TextBox)currentChild).IsEnabled = true;
 
                 }
+            }
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists("test.txt") == true)
+            {
+                string s;
+                s = File.ReadAllText("test.txt");
+                Listbox.Items.Add(s);
+
             }
         }
     }

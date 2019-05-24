@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentInfoSystem"
         mc:Ignorable="d"
-        Title="Student Information System" Height="450" Width="800">
+        Title="Student Information System" Height="576" Width="800">
     <Grid x:Name="mainGrid" Margin="0,0,2,0">
 
         <Grid Grid.Column="1">
@@ -14,7 +14,9 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="400"/>
-                </Grid.ColumnDefinitions>            </Grid>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="Listbox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="202" Margin="19,271,0,0" VerticalAlignment="Top" Width="174"/>
+                <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="124,370,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click_4"/>            </Grid>
         </Grid>
 
         <TextBox x:Name="firstName" HorizontalAlignment="Left" Height="23" Margin="286,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Grid.Column="1"/>

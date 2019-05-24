@@ -1,0 +1,93 @@
+﻿<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextEditor"
+        mc:Ignorable="d"
+        Title="Text Editor" Height="450" Width="900">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed"/>
+    </Window.CommandBindings>
+
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top">
+            <Button Command="ApplicationCommands.Open">
+                <Image Width="30" Height="30" Source="images/open.png"/>
+            </Button>
+            <Button Command="ApplicationCommands.Save">
+                <Image Width="30" Height="30" Source="images/save.png"/>
+            </Button>
+            <Separator/>
+            <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
+                <Image Width="30" Height="30" Source="images/bold.png"/>
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic">
+                <Image Width="30" Height="30" Source="images/italic.png"/>
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline">
+                <Image Width="30" Height="30" Source="images/underline.png"/>
+            </ToggleButton>
+            <Separator/>
+            <ComboBox Name="cmbFontFamily" Width="100" SelectionChanged="CMBFontFamily_SelectionChanged"/>
+            <ComboBox Name="cmbFontSize" Width="35" IsEditable="True" TextBoxBase.TextChanged="CMBFontSize_TextChanged"/>
+            <Separator/>
+            <ToggleButton Command="EditingCommands.ToggleBullets" Name="btnBullets">
+                <Image Width="30" Height="30" Source="images/bullet list.png"/>
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleNumbering" Name="btnNumbers">
+                <Image Width="30" Height="30" Source="images/number list.png"/>
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleSubscript" Name="btnSubscript">
+                <Image Width="30" Height="30" Source="images/subscript.png"/>
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleSuperscript" Name="btnSuperscript">
+                <Image Width="30" Height="30" Source="images/superscript.png"/>
+            </ToggleButton>
+            <Separator/>
+            <ToggleButton Command="EditingCommands.AlignLeft" Name="btnAlignLeft">
+                <Image Width="30" Height="30" Source="images/left.png"/>
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.AlignCenter" Name="btnAlignCenter">
+                <Image Width="30" Height="30" Source="images/center.png"/>
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.AlignRight" Name="btnAlignRight">
+                <Image Width="30" Height="30" Source="images/right.png"/>
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.AlignJustify" Name="btnAlignJustify">
+                <Image Width="30" Height="30" Source="images/justify.png"/>
+            </ToggleButton>
+            <Separator/>
+            <Button  Name="btnCopy" Click="BtnCopy_Click">
+                <Image Width="30" Height="30" Source="images/copy.png" RenderTransformOrigin="0.925,2.12"/>
+            </Button>
+            <Button  Name="btnCut" Click="BtnCut_Click">
+                <Image Width="30" Height="30" Source="images/cut.png"/>
+            </Button>
+            <Button  Name="btnPaste" Click="BtnPaste_Click">
+                <Image Width="30" Height="30" Source="images/paste.png"/>
+            </Button>
+            <Separator/>
+            <Button  Name="btnRedo">
+                <Image Width="30" Height="30" Source="images/redo.png"/>
+            </Button>
+            <Button  Name="btnUndo">
+                <Image Width="30" Height="30" Source="images/undo.png"/>
+            </Button>
+            <Button  Name="btnFind">
+                <Image Width="30" Height="30" Source="images/find.png"/>
+            </Button>
+
+        </ToolBar>
+        <RichTextBox Name="rtbEditor" SelectionChanged="RtbEditor_SelectionChanged">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0" /> <!-- For spacing -->
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+    </DockPanel>
+    
+</Window>

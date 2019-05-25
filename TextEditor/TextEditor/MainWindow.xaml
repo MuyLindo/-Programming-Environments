@@ -5,78 +5,83 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextEditor"
         mc:Ignorable="d"
-        Title="Text Editor" Height="450" Width="900">
+        Title="Text Editor" Height="450" Width="950">
 
-    <Window.CommandBindings>
+    <!--Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed"/>
-    </Window.CommandBindings>
+    </-->
 
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">
-            <Button Command="ApplicationCommands.Open">
+            <ToolBar.CommandBindings>
+                <CommandBinding Command="Open" Executed="Open_Executed"/>
+                <CommandBinding Command="Save" Executed="Save_Executed"/>
+            </ToolBar.CommandBindings>
+            <Button Command="Open" ToolTip="Open">
                 <Image Width="30" Height="30" Source="images/open.png"/>
             </Button>
-            <Button Command="ApplicationCommands.Save">
+            <Button Command="Save" ToolTip="Save">
                 <Image Width="30" Height="30" Source="images/save.png"/>
             </Button>
             <Separator/>
-            <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
+            <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold" ToolTip="Bold">
                 <Image Width="30" Height="30" Source="images/bold.png"/>
             </ToggleButton>
-            <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic">
+            <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic" ToolTip="Italic">
                 <Image Width="30" Height="30" Source="images/italic.png"/>
             </ToggleButton>
-            <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline">
+            <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline" ToolTip="Underline">
                 <Image Width="30" Height="30" Source="images/underline.png"/>
             </ToggleButton>
             <Separator/>
             <ComboBox Name="cmbFontFamily" Width="100" SelectionChanged="CMBFontFamily_SelectionChanged"/>
             <ComboBox Name="cmbFontSize" Width="35" IsEditable="True" TextBoxBase.TextChanged="CMBFontSize_TextChanged"/>
             <Separator/>
-            <ToggleButton Command="EditingCommands.ToggleBullets" Name="btnBullets">
+            <RadioButton Command="EditingCommands.ToggleBullets" Name="btnBullets" ToolTip="Bullets">
                 <Image Width="30" Height="30" Source="images/bullet list.png"/>
-            </ToggleButton>
-            <ToggleButton Command="EditingCommands.ToggleNumbering" Name="btnNumbers">
+            </RadioButton>
+            <RadioButton Command="EditingCommands.ToggleNumbering" Name="btnNumbers" ToolTip="Numbering">
                 <Image Width="30" Height="30" Source="images/number list.png"/>
-            </ToggleButton>
-            <ToggleButton Command="EditingCommands.ToggleSubscript" Name="btnSubscript">
+            </RadioButton>
+            <Button Command="EditingCommands.ToggleSubscript" Name="btnSubscript" ToolTip="Subscript">
                 <Image Width="30" Height="30" Source="images/subscript.png"/>
-            </ToggleButton>
-            <ToggleButton Command="EditingCommands.ToggleSuperscript" Name="btnSuperscript">
-                <Image Width="30" Height="30" Source="images/superscript.png"/>
-            </ToggleButton>
-            <Separator/>
-            <ToggleButton Command="EditingCommands.AlignLeft" Name="btnAlignLeft">
-                <Image Width="30" Height="30" Source="images/left.png"/>
-            </ToggleButton>
-            <ToggleButton Command="EditingCommands.AlignCenter" Name="btnAlignCenter">
-                <Image Width="30" Height="30" Source="images/center.png"/>
-            </ToggleButton>
-            <ToggleButton Command="EditingCommands.AlignRight" Name="btnAlignRight">
-                <Image Width="30" Height="30" Source="images/right.png"/>
-            </ToggleButton>
-            <ToggleButton Command="EditingCommands.AlignJustify" Name="btnAlignJustify">
-                <Image Width="30" Height="30" Source="images/justify.png"/>
-            </ToggleButton>
-            <Separator/>
-            <Button  Name="btnCopy" Click="BtnCopy_Click">
-                <Image Width="30" Height="30" Source="images/copy.png" RenderTransformOrigin="0.925,2.12"/>
             </Button>
-            <Button  Name="btnCut" Click="BtnCut_Click">
+            <Button Command="EditingCommands.ToggleSuperscript" Name="btnSuperscript" ToolTip="Superscript">
+                <Image Width="30" Height="30" Source="images/superscript.png"/>
+            </Button>
+            <Separator/>
+            <RadioButton Command="EditingCommands.AlignLeft" Name="btnAlignLeft" ToolTip="Align Text Left">
+                <Image Width="30" Height="30" Source="images/left.png"/>
+            </RadioButton>
+            <RadioButton Command="EditingCommands.AlignCenter" Name="btnAlignCenter" ToolTip="Align Text Center">
+                <Image Width="30" Height="30" Source="images/center.png"/>
+            </RadioButton>
+            <RadioButton Command="EditingCommands.AlignRight" Name="btnAlignRight" ToolTip="Align Text Right">
+                <Image Width="30" Height="30" Source="images/right.png"/>
+            </RadioButton>
+            <RadioButton Command="EditingCommands.AlignJustify" Name="btnAlignJustify" ToolTip="Align Text Justify">
+                <Image Width="30" Height="30" Source="images/justify.png"/>
+            </RadioButton>
+            <Separator/>
+            <Button  Name="btnCopy" Click="BtnCopy_Click" ToolTip="Copy">
+                <Image Width="30" Height="30" Source="images/copy.png"/>
+            </Button>
+            <Button  Name="btnCut" Click="BtnCut_Click" ToolTip="Cut">
                 <Image Width="30" Height="30" Source="images/cut.png"/>
             </Button>
-            <Button  Name="btnPaste" Click="BtnPaste_Click">
+            <Button  Name="btnPaste" Click="BtnPaste_Click" ToolTip="Paste">
                 <Image Width="30" Height="30" Source="images/paste.png"/>
             </Button>
             <Separator/>
-            <Button  Name="btnRedo">
+            <Button  Name="btnRedo" ToolTip="Redo">
                 <Image Width="30" Height="30" Source="images/redo.png"/>
             </Button>
-            <Button  Name="btnUndo">
+            <Button  Name="btnUndo" ToolTip="Undo">
                 <Image Width="30" Height="30" Source="images/undo.png"/>
             </Button>
-            <Button  Name="btnFind">
+            <TextBox Name="textBox" Width="50"></TextBox>
+            <Button  Name="btnFind" ToolTip="Find">
                 <Image Width="30" Height="30" Source="images/find.png"/>
             </Button>
 

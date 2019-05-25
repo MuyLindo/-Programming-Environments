@@ -41,7 +41,7 @@ namespace TextEditor
             {
                 FileStream fileStream = new FileStream(dialog.FileName, FileMode.Open); 
                 TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
-                range.Load(fileStream, DataFormats.Text); //Rtf
+                range.Load(fileStream, DataFormats.Rtf);
             }
         }
 
@@ -82,24 +82,78 @@ namespace TextEditor
             temp = rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
             btnUnderline.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextDecorations.Underline));
             temp = rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
-            
+           /* btnAlignLeft.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextAlignment.Left));
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.BaselineAlignmentProperty);
+            btnAlignCenter.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextAlignment.Center));
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.BaselineAlignmentProperty);
+            btnAlignRight.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextAlignment.Right));
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.BaselineAlignmentProperty);
+            btnAlignJustify.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextAlignment.Justify));
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.BaselineAlignmentProperty);*/
 
-            //TextAlignment.Justify
-
+           
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontFamilyProperty);
             cmbFontFamily.SelectedItem = temp;
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontSizeProperty);
             cmbFontSize.Text = temp.ToString();
         }
 
+        private void BtnSubscript_Click(object sender, RoutedEventArgs e)
+        {
+            rtbEditor.Selection.ApplyPropertyValue(Inline.BaselineAlignmentProperty, BaselineAlignment.Subscript);
+        }
+
+        private void BtnSuperscript_Click(object sender, RoutedEventArgs e)
+        {
+            rtbEditor.Selection.ApplyPropertyValue(Inline.BaselineAlignmentProperty, BaselineAlignment.Superscript);
+        }
+
         private bool IsRichTextBoxEmpty(RichTextBox rtbEditor) // Function for checking if the RichTextBox is empty
         {
             if (rtbEditor.Document.Blocks.Count == 0)
                 return true;
+
             TextPointer startPointer = rtbEditor.Document.ContentStart.GetNextInsertionPosition(LogicalDirection.Forward);
             TextPointer endPointer = rtbEditor.Document.ContentEnd.GetNextInsertionPosition(LogicalDirection.Backward);
 
             return startPointer.CompareTo(endPointer) == 0; // Compares the start and end position of the written text, if is equal to 0.
+        }
+
+        /* private bool FileChange(RichTextBox rtbEditor) // Ckecks if the file is changed
+         {
+
+         }*/
+
+        private void BtnCut_Click(object sender, RoutedEventArgs e)
+        {
+            rtbEditor.Cut();
+        }
+
+        private void BtnCopy_Click(object sender, RoutedEventArgs e)
+        {
+            rtbEditor.Copy();
+        }
+
+        private void BtnPaste_Click(object sender, RoutedEventArgs e)
+        {
+            rtbEditor.Paste();
+        }
+
+        private void BtnRedo_Click(object sender, RoutedEventArgs e)
+        {
+            if(rtbEditor.CanRedo == true)
+                rtbEditor.Redo();
+        }
+
+        private void BtnUndo_Click(object sender, RoutedEventArgs e)
+        {
+            if (rtbEditor.CanUndo == true)
+                rtbEditor.Undo();
+        }
+
+        private void BtnFind_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e) // Function which asks you to save the text file, 
@@ -122,34 +176,7 @@ namespace TextEditor
                         e.Cancel = true;
                         break; 
                 }
-           
             }
-           
-        }
-
-        private void BtnCut_Click(object sender, RoutedEventArgs e)
-        {
-            rtbEditor.Cut();
-        }
-
-        private void BtnCopy_Click(object sender, RoutedEventArgs e)
-        {
-            rtbEditor.Copy();
-        }
-
-        private void BtnPaste_Click(object sender, RoutedEventArgs e)
-        {
-            rtbEditor.Paste();
-        }
-
-        private void BtnRedo_Click(object sender, RoutedEventArgs e)
-        {
-            rtbEditor.Redo();
-        }
-
-        private void BtnUndo_Click(object sender, RoutedEventArgs e)
-        {
-            rtbEditor.Undo();
         }
     }
 }

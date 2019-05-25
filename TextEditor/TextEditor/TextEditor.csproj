@@ -105,7 +105,6 @@
     <Resource Include="images\bullet list.png" />
     <Resource Include="images\copy.png" />
     <Resource Include="images\cut.png" />
-    <Resource Include="images\find.png" />
     <Resource Include="images\number list.png" />
     <Resource Include="images\redo.png" />
     <Resource Include="images\subscript.png" />
@@ -120,6 +119,12 @@
     <Resource Include="images\justify.png" />
     <Resource Include="images\left.png" />
     <Resource Include="images\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\highlight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\find.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

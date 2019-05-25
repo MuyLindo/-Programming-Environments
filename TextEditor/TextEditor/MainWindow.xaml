@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TextEditor"
         mc:Ignorable="d"
-        Title="Text Editor" Height="450" Width="950">
+        Title="Text Editor" Height="450" Width="990">
 
     <!--Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
@@ -18,49 +18,52 @@
                 <CommandBinding Command="Open" Executed="Open_Executed"/>
                 <CommandBinding Command="Save" Executed="Save_Executed"/>
             </ToolBar.CommandBindings>
-            <Button Command="Open" ToolTip="Open">
+            <Button Name="btnOpen" Command="Open" ToolTip="Open">
                 <Image Width="30" Height="30" Source="images/open.png"/>
             </Button>
-            <Button Command="Save" ToolTip="Save">
+            <Button Name="btnSave" Command="Save" ToolTip="Save">
                 <Image Width="30" Height="30" Source="images/save.png"/>
             </Button>
             <Separator/>
-            <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold" ToolTip="Bold">
+            <ToggleButton Name="btnBold"  Command="EditingCommands.ToggleBold" ToolTip="Bold">
                 <Image Width="30" Height="30" Source="images/bold.png"/>
             </ToggleButton>
-            <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic" ToolTip="Italic">
+            <ToggleButton Name="btnItalic" Command="EditingCommands.ToggleItalic" ToolTip="Italic">
                 <Image Width="30" Height="30" Source="images/italic.png"/>
             </ToggleButton>
-            <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline" ToolTip="Underline">
+            <ToggleButton Name="btnUnderline" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
                 <Image Width="30" Height="30" Source="images/underline.png"/>
             </ToggleButton>
             <Separator/>
             <ComboBox Name="cmbFontFamily" Width="100" SelectionChanged="CMBFontFamily_SelectionChanged"/>
             <ComboBox Name="cmbFontSize" Width="35" IsEditable="True" TextBoxBase.TextChanged="CMBFontSize_TextChanged"/>
+            <Button Click="BtnHighlight_Click" Name="btnHighlight" ToolTip="Highlight">
+                <Image Width="30" Height="30" Source="images/highlight.png"/>
+            </Button>
             <Separator/>
-            <RadioButton Command="EditingCommands.ToggleBullets" Name="btnBullets" ToolTip="Bullets">
+            <RadioButton Name="btnBullets" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
                 <Image Width="30" Height="30" Source="images/bullet list.png"/>
             </RadioButton>
-            <RadioButton Command="EditingCommands.ToggleNumbering" Name="btnNumbers" ToolTip="Numbering">
+            <RadioButton Name="btnNumbers" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
                 <Image Width="30" Height="30" Source="images/number list.png"/>
             </RadioButton>
-            <Button Click="BtnSubscript_Click" Name="btnSubscript" ToolTip="Subscript">
+            <Button Name="btnSubscript" Click="BtnSubscript_Click" ToolTip="Subscript">
                 <Image Width="30" Height="30" Source="images/subscript.png"/>
             </Button>
-            <Button Click="BtnSuperscript_Click" Name="btnSuperscript" ToolTip="Superscript">
+            <Button Name="btnSuperscript" Click="BtnSuperscript_Click" ToolTip="Superscript">
                 <Image Width="30" Height="30" Source="images/superscript.png"/>
             </Button>
             <Separator/>
-            <RadioButton Command="EditingCommands.AlignLeft" Name="btnAlignLeft" ToolTip="Align Text Left">
+            <RadioButton Name="btnAlignLeft" Command="EditingCommands.AlignLeft" ToolTip="Align Text Left">
                 <Image Width="30" Height="30" Source="images/left.png"/>
             </RadioButton>
-            <RadioButton Command="EditingCommands.AlignCenter" Name="btnAlignCenter" ToolTip="Align Text Center">
+            <RadioButton Name="btnAlignCenter" Command="EditingCommands.AlignCenter" ToolTip="Align Text Center">
                 <Image Width="30" Height="30" Source="images/center.png"/>
             </RadioButton>
-            <RadioButton Command="EditingCommands.AlignRight" Name="btnAlignRight" ToolTip="Align Text Right">
+            <RadioButton Name="btnAlignRight" Command="EditingCommands.AlignRight" ToolTip="Align Text Right">
                 <Image Width="30" Height="30" Source="images/right.png"/>
             </RadioButton>
-            <RadioButton Command="EditingCommands.AlignJustify" Name="btnAlignJustify" ToolTip="Align Text Justify">
+            <RadioButton Name="btnAlignJustify" Command="EditingCommands.AlignJustify" ToolTip="Align Text Justify">
                 <Image Width="30" Height="30" Source="images/justify.png"/>
             </RadioButton>
             <Separator/>
@@ -81,12 +84,12 @@
                 <Image Width="30" Height="30" Source="images/undo.png"/>
             </Button>
             <TextBox Name="textBox" Width="50"></TextBox>
-            <Button  Name="btnFind" ToolTip="Find">
+            <Button  Name="btnFind" Click="BtnFind_Click" ToolTip="Find">
                 <Image Width="30" Height="30" Source="images/find.png"/>
             </Button>
 
         </ToolBar>
-        <RichTextBox Name="rtbEditor" SelectionChanged="RtbEditor_SelectionChanged">
+        <RichTextBox Name="rtbEditor" SelectionChanged="RtbEditor_SelectionChanged" VerticalScrollBarVisibility="Auto" AcceptsTab="True" >
             <RichTextBox.Resources>
                 <Style TargetType="{x:Type Paragraph}">
                     <Setter Property="Margin" Value="0" /> <!-- For spacing -->

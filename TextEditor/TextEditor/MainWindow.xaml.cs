@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,10 +40,10 @@ namespace TextEditor
 
             if (dialog.ShowDialog() == true)
             {
-                FileStream fileStream = new FileStream(dialog.FileName, FileMode.Open); 
+                FileStream fileStream = new FileStream(dialog.FileName, FileMode.Open);
                 TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
                 range.Load(fileStream, DataFormats.Rtf);
-            }
+            }            
         }
 
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e) // Opens a dialog for saving a file
@@ -82,20 +83,16 @@ namespace TextEditor
             temp = rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
             btnUnderline.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextDecorations.Underline));
             temp = rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
-           /* btnAlignLeft.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextAlignment.Left));
-            temp = rtbEditor.Selection.GetPropertyValue(Inline.BaselineAlignmentProperty);
-            btnAlignCenter.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextAlignment.Center));
-            temp = rtbEditor.Selection.GetPropertyValue(Inline.BaselineAlignmentProperty);
-            btnAlignRight.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextAlignment.Right));
-            temp = rtbEditor.Selection.GetPropertyValue(Inline.BaselineAlignmentProperty);
-            btnAlignJustify.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextAlignment.Justify));
-            temp = rtbEditor.Selection.GetPropertyValue(Inline.BaselineAlignmentProperty);*/
-
-           
+                    
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontFamilyProperty);
             cmbFontFamily.SelectedItem = temp;
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontSizeProperty);
             cmbFontSize.Text = temp.ToString();
+        }
+
+        private void BtnHighlight_Click(object sender, RoutedEventArgs e)
+        {
+            rtbEditor.Selection.ApplyPropertyValue(Run.BackgroundProperty, "red");
         }
 
         private void BtnSubscript_Click(object sender, RoutedEventArgs e)
@@ -107,22 +104,6 @@ namespace TextEditor
         {
             rtbEditor.Selection.ApplyPropertyValue(Inline.BaselineAlignmentProperty, BaselineAlignment.Superscript);
         }
-
-        private bool IsRichTextBoxEmpty(RichTextBox rtbEditor) // Function for checking if the RichTextBox is empty
-        {
-            if (rtbEditor.Document.Blocks.Count == 0)
-                return true;
-
-            TextPointer startPointer = rtbEditor.Document.ContentStart.GetNextInsertionPosition(LogicalDirection.Forward);
-            TextPointer endPointer = rtbEditor.Document.ContentEnd.GetNextInsertionPosition(LogicalDirection.Backward);
-
-            return startPointer.CompareTo(endPointer) == 0; // Compares the start and end position of the written text, if is equal to 0.
-        }
-
-        /* private bool FileChange(RichTextBox rtbEditor) // Ckecks if the file is changed
-         {
-
-         }*/
 
         private void BtnCut_Click(object sender, RoutedEventArgs e)
         {
@@ -153,14 +134,37 @@ namespace TextEditor
 
         private void BtnFind_Click(object sender, RoutedEventArgs e)
         {
+            Regex regex = new Regex( textBox.Text);
+            Match matches = regex.Match(rtbEditor.ToString());
+            while (matches.Success)
+            {
+                rtbEditor.Selection.Select(rtbEditor.Document.ContentStart.GetPositionAtOffset(matches.Index), rtbEditor.Document.ContentStart.GetPositionAtOffset(matches.Length));
+                rtbEditor.Selection.ApplyPropertyValue(Run.BackgroundProperty, "red");
+            }
+         }
 
+        private bool IsRichTextBoxEmpty(RichTextBox rtbEditor) // Function for checking if the RichTextBox is empty
+        {
+            if (rtbEditor.Document.Blocks.Count == 0)
+                return true;
+
+            TextPointer startPointer = rtbEditor.Document.ContentStart.GetNextInsertionPosition(LogicalDirection.Forward);
+            TextPointer endPointer = rtbEditor.Document.ContentEnd.GetNextInsertionPosition(LogicalDirection.Backward);
+
+            return startPointer.CompareTo(endPointer) == 0; // Compares the start and end position of the written text, if is equal to 0.
         }
 
+        private bool TextChanged()
+        {
+
+            return false;
+        }
+        
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e) // Function which asks you to save the text file, 
                                                                                    //if there is written text in the text editor. 
                                                                                    //If there is no text, the messageBox doesn't shows.
         {
-            if (IsRichTextBoxEmpty(rtbEditor) == false)   
+            if ((IsRichTextBoxEmpty(rtbEditor) == false))   
             {
                 MessageBoxResult result = MessageBox.Show("Do you want to save the file?", "Exit", MessageBoxButton.YesNoCancel);
             switch (result)

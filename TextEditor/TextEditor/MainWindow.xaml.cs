@@ -151,10 +151,8 @@ namespace TextEditor
             if (match.Success)
             {
                 MessageBox.Show("found");
-                rtbEditor.Selection.Select(rtbEditor.Document.ContentStart.GetPositionAtOffset(match.Index), rtbEditor.Document.ContentStart.GetPositionAtOffset(match.Length));
-                rtbEditor.Selection.ApplyPropertyValue(Run.BackgroundProperty, "yellow");
-                
-                //rtbEditor.Select(match.Index, match.Length);
+                //rtbEditor.Selection.Select(match.Index), rtbEditor.Document.ContentStart.GetPositionAtOffset(match.Length));
+                //rtbEditor.Selection.ApplyPropertyValue(Run.BackgroundProperty, "yellow");
             }
         }
 

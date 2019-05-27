@@ -23,6 +23,8 @@ namespace TextEditor
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string fileText;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -43,6 +45,7 @@ namespace TextEditor
                 FileStream fileStream = new FileStream(dialog.FileName, FileMode.Open);
                 TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
                 range.Load(fileStream, DataFormats.Rtf);
+                fileText = range.Text;
             }            
         }
 
@@ -90,12 +93,12 @@ namespace TextEditor
             cmbFontSize.Text = temp.ToString();
         }
 
-        private void BtnHighlight_Click(object sender, RoutedEventArgs e)
+        private void BtnHighlight_Click(object sender, RoutedEventArgs e) //Highlight selected text
         {
             rtbEditor.Selection.ApplyPropertyValue(Run.BackgroundProperty, "red");
         }
 
-        private void BtnSubscript_Click(object sender, RoutedEventArgs e)
+        private void BtnSubscript_Click(object sender, RoutedEventArgs e) 
         {
             rtbEditor.Selection.ApplyPropertyValue(Inline.BaselineAlignmentProperty, BaselineAlignment.Subscript);
         }
@@ -105,17 +108,17 @@ namespace TextEditor
             rtbEditor.Selection.ApplyPropertyValue(Inline.BaselineAlignmentProperty, BaselineAlignment.Superscript);
         }
 
-        private void BtnCut_Click(object sender, RoutedEventArgs e)
+        private void BtnCut_Click(object sender, RoutedEventArgs e) // Cut the selected text
         {
             rtbEditor.Cut();
         }
 
-        private void BtnCopy_Click(object sender, RoutedEventArgs e)
+        private void BtnCopy_Click(object sender, RoutedEventArgs e) // Copy the selected text
         {
             rtbEditor.Copy();
         }
 
-        private void BtnPaste_Click(object sender, RoutedEventArgs e)
+        private void BtnPaste_Click(object sender, RoutedEventArgs e) // Paste the selected text
         {
             rtbEditor.Paste();
         }
@@ -132,16 +135,28 @@ namespace TextEditor
                 rtbEditor.Undo();
         }
 
-        private void BtnFind_Click(object sender, RoutedEventArgs e)
+        private void BtnFind_Click(object sender, RoutedEventArgs e) // Find the word which is wrtten in textBox
         {
-            Regex regex = new Regex( textBox.Text);
-            Match matches = regex.Match(rtbEditor.ToString());
-            while (matches.Success)
+            string word = textBox.Text;
+            TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+            string allText = range.Text;
+
+            if (word == string.Empty)
             {
-                rtbEditor.Selection.Select(rtbEditor.Document.ContentStart.GetPositionAtOffset(matches.Index), rtbEditor.Document.ContentStart.GetPositionAtOffset(matches.Length));
-                rtbEditor.Selection.ApplyPropertyValue(Run.BackgroundProperty, "red");
+                MessageBox.Show("Please enter a word!", "Exit", MessageBoxButton.OK);
             }
-         }
+
+            Regex regex = new Regex(word);
+            Match match = regex.Match(allText);
+            if (match.Success)
+            {
+                MessageBox.Show("found");
+                rtbEditor.Selection.Select(rtbEditor.Document.ContentStart.GetPositionAtOffset(match.Index), rtbEditor.Document.ContentStart.GetPositionAtOffset(match.Length));
+                rtbEditor.Selection.ApplyPropertyValue(Run.BackgroundProperty, "yellow");
+                
+                //rtbEditor.Select(match.Index, match.Length);
+            }
+        }
 
         private bool IsRichTextBoxEmpty(RichTextBox rtbEditor) // Function for checking if the RichTextBox is empty
         {
@@ -153,21 +168,16 @@ namespace TextEditor
 
             return startPointer.CompareTo(endPointer) == 0; // Compares the start and end position of the written text, if is equal to 0.
         }
-
-        private bool TextChanged()
-        {
-
-            return false;
-        }
         
-        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) // Function which asks you to save the text file, 
-                                                                                   //if there is written text in the text editor. 
-                                                                                   //If there is no text, the messageBox doesn't shows.
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e) 
         {
-            if ((IsRichTextBoxEmpty(rtbEditor) == false))   
-            {
+            TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+            string allText = range.Text;
+
+            if (IsRichTextBoxEmpty(rtbEditor) == false && allText != fileText)
+           { 
                 MessageBoxResult result = MessageBox.Show("Do you want to save the file?", "Exit", MessageBoxButton.YesNoCancel);
-            switch (result)
+                switch (result)
                 {
                     case MessageBoxResult.Yes:
                         Save_Executed(this, null);
@@ -180,7 +190,7 @@ namespace TextEditor
                         e.Cancel = true;
                         break; 
                 }
-            }
+           }
         }
     }
 }

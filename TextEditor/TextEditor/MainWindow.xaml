@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="Text Editor" Height="450" Width="990">
 
-    <!--Window.CommandBindings>
+    <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed"/>
-    </-->
+    </Window.CommandBindings>
 
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">
